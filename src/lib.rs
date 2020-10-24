@@ -12,7 +12,7 @@
 #![crate_name="syscall"]
 #![crate_type="lib"]
 
-#![feature(asm)]
+#![feature(llvm_asm)]
 #![deny(warnings)]
 #![no_std]
 #![allow(unused_mut)]
@@ -24,22 +24,6 @@ pub use platform::*;
 
 pub mod macros;
 
-#[cfg(all(target_os="linux", target_arch="x86"))]
-#[path="platform/linux-x86/mod.rs"]
-pub mod platform;
-
 #[cfg(all(target_os="linux", target_arch="x86_64"))]
 #[path="platform/linux-x86_64/mod.rs"]
-pub mod platform;
-
-#[cfg(all(target_os="freebsd", target_arch="x86_64"))]
-#[path="platform/freebsd-x86_64/mod.rs"]
-pub mod platform;
-
-#[cfg(all(target_os="linux", target_arch="arm"))]
-#[path="platform/linux-armeabi/mod.rs"]
-pub mod platform;
-
-#[cfg(all(target_os="macos", target_arch="x86_64"))]
-#[path="platform/macos-x86_64/mod.rs"]
 pub mod platform;
